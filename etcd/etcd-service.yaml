@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: etcd-service
+spec:
+  selector:
+    app: etcd
+  ports:
+  - protocol: TCP
+    port: 2379         # 服务暴露的端口
+    targetPort: 2379   # 转发到容器的2379端口
+  clusterIP: None      # 使用 headless service，以便通过 DNS 发现

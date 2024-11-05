@@ -16,8 +16,7 @@ spec:
     spec:
       containers:
       - name: jaeger
-        image: jaegertracing/all-in-one:1.35
+        image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/jaegertracing/all-in-one:1.62.0
         ports:
           - containerPort: 16686  # Jaeger UI
-          - containerPort: 14268  # HTTP collector
-          - containerPort: 14250  # gRPC collector
+          - containerPort: 4371

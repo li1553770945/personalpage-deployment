@@ -37,12 +37,6 @@ spec:
         volumeMounts:
         - name: etcd-data
           mountPath: /etcd-data
-  volumeClaimTemplates:
-  - metadata:
-      name: etcd-data
-    spec:
-      accessModes: ["ReadWriteOnce"]
-      storageClassName: "standard"
-      resources:
-        requests:
-          storage: 1Gi
+      volumes:
+      - name: etcd-data
+        emptyDir: {}

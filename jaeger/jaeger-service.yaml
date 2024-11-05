@@ -5,15 +5,14 @@ metadata:
   labels:
     app: jaeger
 spec:
+  type: LoadBalancer
   ports:
     - name: query-http
       port: 16686
       targetPort: 16686
-    - name: collector-http
-      port: 14268
-      targetPort: 14268
-    - name: collector-grpc
-      port: 14250
-      targetPort: 14250
+    - name: otlp-http
+      port: 4371
+      targetPort: 4371
   selector:
     app: jaeger
+

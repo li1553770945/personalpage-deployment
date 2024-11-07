@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sheepim-api-gateway-deployment
+spec:
+  replicas: 2  # 设置副本数量
+  selector:
+    matchLabels:
+      app: sheepim-api-gateway-pod
+  template:
+    metadata:
+      labels:
+        app: sheepim-api-gateway-pod
+    spec:
+      containers:
+      - name: sheepim-api-gateway-container
+        image: peacesheep/sheepim-api-gateway:latest
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/conf  
+          readOnly: true
+        ports:
+        - containerPort: 9100
+      volumes:
+      - name: config-volume
+        configMap:
+          name: sheepim-api-gateway-config

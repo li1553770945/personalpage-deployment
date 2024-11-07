@@ -24,3 +24,25 @@ kubectl exec -it busybox-test -- sh
 kubectl describe pods busybox-test
 kubectl delete pod busybox-test
 ```
+## etcd
+
+```bash
+kubectl apply -f etcd/etcd-deployment.yaml
+kubectl apply -f etcd/etcd-service.yaml
+```
+## jaeger
+
+```bash
+kubectl apply -f jaeger/jaeger-deployment.yaml
+kubectl apply -f jaeger/jaeger-service.yaml
+```
+## api-gateway
+
+```bash
+kubectl apply -f sheepim-api-gateway/configmap.yaml
+kubectl apply -f sheepim-api-gateway/apigateway-deployment.yaml
+kubectl apply -f sheepim-api-gateway/apigateway-service.yaml
+
+kubectl rollout restart deployment sheepim-api-gateway-deployment
+
+```

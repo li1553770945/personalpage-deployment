@@ -5,11 +5,12 @@ metadata:
   labels:
     app: jaeger
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
     - name: query-http
       port: 16686
       targetPort: 16686
+      nodePort: 31686
     - name: otlp-http
       port: 4371
       targetPort: 4371

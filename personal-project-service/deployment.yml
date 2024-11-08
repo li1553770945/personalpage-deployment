@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: personal-project-service-deployment
+spec:
+  replicas: 3  # 设置副本数量
+  selector:
+    matchLabels:
+      app: personal-project-service-pod
+  template:
+    metadata:
+      labels:
+        app: personal-project-service-pod
+    spec:
+      containers:
+      - name: personal-project-service-container
+        image: peacesheep/personal-project-service:latest
+        volumeMounts:
+          - name: config-volume
+            mountPath: /app/conf  
+            readOnly: true
+        ports:
+        - containerPort: 8890
+      volumes:
+      - name: config-volume
+        configMap:
+          name: personal-project-service-config

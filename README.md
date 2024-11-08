@@ -67,3 +67,13 @@ kubectl apply -f sheepim-auth-service/service.yml
 
 kubectl rollout restart deployment sheepim-auth-service-deployment
 ```
+
+## project-service
+
+```bash
+kubectl apply -f personal-project-service/config-secret.yml
+kubectl apply -f personal-project-service/deployment.yml
+kubectl apply -f personal-project-service/service.yml
+
+kubectl rollout restart deployment personal-projects-service-deployment
+```

@@ -19,4 +19,4 @@ spec:
         image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/jaegertracing/all-in-one:1.62.0
         ports:
           - containerPort: 16686  # Jaeger UI
-          - containerPort: 4371
+          - containerPort: 4317

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: sheepim-api-gateway-deployment
 spec:
-  replicas: 2  # 设置副本数量
+  replicas: 3  # 设置副本数量
   selector:
     matchLabels:
       app: sheepim-api-gateway-pod

@@ -27,22 +27,29 @@ kubectl delete pod busybox-test
 ## etcd
 
 ```bash
-kubectl apply -f etcd/etcd-deployment.yaml
-kubectl apply -f etcd/etcd-service.yaml
+kubectl apply -f etcd/deployment.yml
+kubectl apply -f etcd/service.yml
 ```
 ## jaeger
 
 ```bash
-kubectl apply -f jaeger/jaeger-deployment.yaml
-kubectl apply -f jaeger/jaeger-service.yaml
+kubectl apply -f jaeger/deployment.yml
+kubectl apply -f jaeger/service.yml
 ```
 ## api-gateway
 
 ```bash
-kubectl apply -f sheepim-api-gateway/configmap.yaml
-kubectl apply -f sheepim-api-gateway/apigateway-deployment.yaml
-kubectl apply -f sheepim-api-gateway/apigateway-service.yaml
+kubectl apply -f sheepim-api-gateway/configmap.yml
+kubectl apply -f sheepim-api-gateway/deployment.yml
+kubectl apply -f sheepim-api-gateway/service.yml
 
 kubectl rollout restart deployment sheepim-api-gateway-deployment
+```
 
+```bash
+kubectl apply -f sheepim-user-service/config-secret.yml
+kubectl apply -f sheepim-user-service/deployment.yml
+kubectl apply -f sheepim-api-gateway/service.yml
+
+kubectl rollout restart deployment sheepim-user-service-deployment
 ```

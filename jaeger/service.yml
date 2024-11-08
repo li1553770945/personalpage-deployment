@@ -12,8 +12,8 @@ spec:
       targetPort: 16686
       nodePort: 31686
     - name: otlp-http
-      port: 4371
-      targetPort: 4371
+      port: 4317
+      targetPort: 4317
   selector:
     app: jaeger
 

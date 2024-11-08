@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sheepim-user-service-deployment
+spec:
+  replicas: 3  # 设置副本数量
+  selector:
+    matchLabels:
+      app: sheepim-user-service-pod
+  template:
+    metadata:
+      labels:
+        app: sheepim-user-service-pod
+    spec:
+      containers:
+      - name: sheepim-user-service-container
+        image: peacesheep/sheepim-user-service:latest
+        volumeMounts:
+          - name: config-volume
+            mountPath: /app/conf  
+            readOnly: true
+        ports:
+        - containerPort: 9100
+      volumes:
+      - name: config-volume
+        configMap:
+          name: sheepim-user-service-config

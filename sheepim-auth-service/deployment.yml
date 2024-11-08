@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sheepim-auth-service-deployment
+spec:
+  replicas: 3  # 设置副本数量
+  selector:
+    matchLabels:
+      app: sheepim-auth-service-pod
+  template:
+    metadata:
+      labels:
+        app: sheepim-auth-service-pod
+    spec:
+      containers:
+      - name: sheepim-auth-service-container
+        image: peacesheep/sheepim-auth-service:latest
+        env:
+        - name: JWT_KEY
+          valueFrom:
+            secretKeyRef:
+              name: jwt-key-secret
+              key: JWT_KEY
+        volumeMounts:
+          - name: config-volume
+            mountPath: /app/conf  
+            readOnly: true
+        ports:
+        - containerPort: 8889
+      volumes:
+      - name: config-volume
+        configMap:
+          name: sheepim-auth-service-config

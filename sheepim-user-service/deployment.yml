@@ -20,7 +20,7 @@ spec:
             mountPath: /app/conf  
             readOnly: true
         ports:
-        - containerPort: 9100
+        - containerPort: 8888
       volumes:
       - name: config-volume
         configMap:

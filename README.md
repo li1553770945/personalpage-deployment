@@ -46,10 +46,24 @@ kubectl apply -f sheepim-api-gateway/service.yml
 kubectl rollout restart deployment sheepim-api-gateway-deployment
 ```
 
+## user-service
+
 ```bash
 kubectl apply -f sheepim-user-service/config-secret.yml
 kubectl apply -f sheepim-user-service/deployment.yml
-kubectl apply -f sheepim-api-gateway/service.yml
+kubectl apply -f sheepim-user-service/service.yml
 
 kubectl rollout restart deployment sheepim-user-service-deployment
+```
+
+## auth-service
+
+```bash
+
+kubectl create secret generic jwt-key-secret --from-literal=JWT_KEY="$JWT_KEY" # 或者换成自定义的字符串
+kubectl apply -f sheepim-auth-service/config-secret.yml
+kubectl apply -f sheepim-auth-service/deployment.yml
+kubectl apply -f sheepim-auth-service/service.yml
+
+kubectl rollout restart deployment sheepim-auth-service-deployment
 ```

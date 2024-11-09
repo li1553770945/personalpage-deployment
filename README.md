@@ -75,5 +75,5 @@ kubectl apply -f personal-project-service/config-secret.yml
 kubectl apply -f personal-project-service/deployment.yml
 kubectl apply -f personal-project-service/service.yml
 
-kubectl rollout restart deployment personal-projects-service-deployment
+kubectl rollout restart deployment personal-project-service-deployment
 ```

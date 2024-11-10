@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: personal-feedback-service-deployment
+spec:
+  replicas: 3  # 设置副本数量
+  selector:
+    matchLabels:
+      app: personal-feedback-service-pod
+  template:
+    metadata:
+      labels:
+        app: personal-feedback-service-pod
+    spec:
+      containers:
+      - name: personal-feedback-service-container
+        image: peacesheep/personal-feedback-service:latest
+        volumeMounts:
+          - name: config-volume
+            mountPath: /app/conf  
+            readOnly: true
+        ports:
+        - containerPort: 8891
+      volumes:
+      - name: config-volume
+        configMap:
+          name: personal-feedback-service-config

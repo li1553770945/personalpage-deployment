@@ -77,3 +77,13 @@ kubectl apply -f personal-project-service/service.yml
 
 kubectl rollout restart deployment personal-project-service-deployment
 ```
+
+## feedback-service
+
+```bash
+kubectl apply -f personal-feedback-service/config-secret.yml
+kubectl apply -f personal-feedback-service/deployment.yml
+kubectl apply -f personal-feedback-service/service.yml
+
+kubectl rollout restart deployment personal-feedback-service-deployment
+```

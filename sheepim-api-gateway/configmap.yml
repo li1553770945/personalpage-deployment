@@ -19,4 +19,5 @@ data:
     rpc:
       user-service-name: sheepim-user-service
       auth-service-name: sheepim-auth-service
-      project-service-name: personal-projects-service
+      project-service-name: personal-project-service
+      feedback-service-name: personal-feedback-service

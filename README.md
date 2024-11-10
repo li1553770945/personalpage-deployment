@@ -2,17 +2,42 @@
 
 ## 初始化环境
 
+### 正常流程
 ```bash
 sudo hostnamectl set-hostname master-node # 设置计算机名
 
-sudo systemctl stop kubelet
-sudo kubeadm reset -f
-sudo rm -rf /etc/cni/net.d
-sudo rm -rf /etc/kubernetes /var/lib/etcd # 清除原有配置
 
 sudo kubeadm init --control-plane-endpoint=master-node --upload-certs --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --pod-network-cidr=10.244.0.0/16  -v=5
-```
 
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl taint nodes master-node node-role.kubernetes.io/control-plane:NoSchedule-
+kubectl apply -f kube-flannel.yml
+```
+### 遇到问题需要的命令
+
+```bash
+sudo systemctl stop kubelet
+sudo kubeadm reset -f
+sudo rm -rf /etc/cni/net.d /etc/kubernetes /var/lib/etcd ~/.kube # 清除原有配置
+
+
+sudo kubeadm init --control-plane-endpoint=master-node --upload-certs --image-repository=registry.cn-hangzhou.aliyuncs.com/google_containers --pod-network-cidr=10.244.0.0/16  -v=5
+
+sudo ctr -n k8s.io images tag \
+  registry.cn-hangzhou.aliyuncs.com/google_containers/kube-apiserver:v1.31.2 \
+  registry.k8s.io/kube-apiserver:v1.31.2
+
+sudo ctr -n k8s.io images tag \
+  registry.cn-hangzhou.aliyuncs.com/google_containers/pause:3.10 \
+  registry.k8s.io/pause:3.10
+  
+sudo journalctl -u kubelet -e
+
+```
 ## busybox 用于测试
 
 用于创建一个存在一个小时的 busybox，可以用于一些命令的测试，之后会自动关闭。

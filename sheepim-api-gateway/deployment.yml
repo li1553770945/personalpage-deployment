@@ -21,6 +21,22 @@ spec:
           readOnly: true
         ports:
         - containerPort: 9100
+        livenessProbe:                      # 存活探针，检测是否正常运行
+          httpGet:
+            path: /api/ping                        # 检查根路径
+            port: 9100                   
+          initialDelaySeconds: 10          
+          periodSeconds: 10                # 每10秒检查一次
+          timeoutSeconds: 5                # 探针的超时时间
+          failureThreshold: 3              # 连续失败3次则重启
+        readinessProbe:                     # 就绪探针，检测服务是否可用
+          httpGet:
+            path: /api/ping                        # 检查根路径
+            port: 9100                  
+          initialDelaySeconds: 5           # 延迟5秒开始检测
+          periodSeconds: 5                 # 每5秒检测一次
+          timeoutSeconds: 5                # 探针的超时时间
+          failureThreshold: 3              # 连续失败3次则视为不可用
       volumes:
       - name: config-volume
         configMap:

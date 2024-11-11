@@ -34,6 +34,20 @@ spec:
         ports:
         - containerPort: 2379
         - containerPort: 2380
+        livenessProbe:
+          tcpSocket:
+            port: 2379
+          initialDelaySeconds: 10         # 根据etcd启动时间调整
+          periodSeconds: 10               # 每10秒检查一次
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          tcpSocket:
+            port: 2379
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 3
         volumeMounts:
         - name: etcd-data
           mountPath: /etcd-data

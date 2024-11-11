@@ -20,3 +20,19 @@ spec:
         ports:
           - containerPort: 16686  # Jaeger UI
           - containerPort: 4317
+        livenessProbe:                      # 存活探针，检测是否正常运行
+          httpGet:
+            path: /                        # 检查根路径
+            port: 16686                    # 使用 Jaeger UI 的端口
+          initialDelaySeconds: 10          # 根据 Jaeger 启动时间调整
+          periodSeconds: 10                # 每10秒检查一次
+          timeoutSeconds: 5                # 探针的超时时间
+          failureThreshold: 3              # 连续失败3次则重启
+        readinessProbe:                     # 就绪探针，检测服务是否可用
+          httpGet:
+            path: /                        # 检查根路径
+            port: 16686                    # 使用 Jaeger UI 的端口
+          initialDelaySeconds: 5           # 延迟5秒开始检测
+          periodSeconds: 5                 # 每5秒检测一次
+          timeoutSeconds: 5                # 探针的超时时间
+          failureThreshold: 3              # 连续失败3次则视为不可用

@@ -60,6 +60,9 @@ kubectl apply -f etcd/service.yml
 ```bash
 kubectl apply -f jaeger/deployment.yml
 kubectl apply -f jaeger/service.yml
+
+kubectl rollout restart deployment jaeger
+
 ```
 ## api-gateway
 

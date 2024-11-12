@@ -17,6 +17,9 @@ spec:
       containers:
       - name: jaeger
         image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/jaegertracing/all-in-one:1.62.0
+        env:
+          - name: BADGER_SPAN_STORE_TTL
+            value: "24h0m0s"   # 设置数据保存时间为1小时
         ports:
           - containerPort: 16686  # Jaeger UI
           - containerPort: 4317

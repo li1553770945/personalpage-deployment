@@ -115,3 +115,13 @@ kubectl apply -f personal-feedback-service/service.yml
 
 kubectl rollout restart deployment personal-feedback-service-deployment
 ```
+
+## notify-service
+
+```bash
+kubectl apply -f personal-notify-service/config-secret.yml
+kubectl apply -f personal-notify-service/deployment.yml
+kubectl apply -f personal-notify-service/service.yml
+
+kubectl rollout restart deployment personal-notify-service-deployment
+```

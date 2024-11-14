@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: personal-notify-service-service
+spec:
+  type: NodePort
+  selector:
+    app: personal-notify-service-pod  # 确保与 Pod 的标签匹配
+  ports:
+  - protocol: TCP
+    port: 8892 # Service暴露的端口
+    targetPort: 8892 # 转发到容器的端口
+  

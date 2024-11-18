@@ -21,3 +21,5 @@ data:
       auth-service-name: sheepim-auth-service
       project-service-name: personal-project-service
       feedback-service-name: personal-feedback-service
+      notify-service-name: personal-notify-service
+      room-service-name: sheepim-room-service

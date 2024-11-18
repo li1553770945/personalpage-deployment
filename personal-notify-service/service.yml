@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: personal-notify-service-service
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: personal-notify-service-pod  # 确保与 Pod 的标签匹配
   ports:

@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: sheepim-user-service-service
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: sheepim-user-service-pod  # 确保与 Pod 的标签匹配
   ports:

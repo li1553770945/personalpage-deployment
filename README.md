@@ -64,7 +64,17 @@ kubectl apply -f jaeger/service.yml
 kubectl rollout restart deployment jaeger
 
 ```
+
+## redis
+
+```bash
+kubectl apply -f redis/configmap.yml
+kubectl apply -f redis/deployment.yml
+kubectl apply -f redis/service.yml
+```
+
 ## api-gateway
+
 
 ```bash
 kubectl apply -f sheepim-api-gateway/configmap.yml

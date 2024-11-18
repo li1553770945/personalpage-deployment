@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7.4.1 # 使用官方 Redis 镜像
+        ports:
+        - containerPort: 6379
+        volumeMounts:
+        - name: redis-config-volume
+          mountPath: /etc/redis/redis.conf # 将 ConfigMap 挂载到容器中的 /etc/redis
+          subPath: redis.conf # 指定文件名
+        command: ["redis-server"]
+        args: ["/etc/redis/redis.conf"] # 使用挂载的配置文件
+      volumes:
+      - name: redis-config-volume
+        configMap:
+          name: redis-config # 指定 ConfigMap 的名称

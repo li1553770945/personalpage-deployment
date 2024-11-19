@@ -15,7 +15,9 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 kubectl taint nodes master-node node-role.kubernetes.io/control-plane:NoSchedule-
-kubectl apply -f kube-flannel.yml
+kubectl apply -f k8s/kube-flannel.yml
+kubectl apply -f k8s/metric.yml
+
 ```
 ### 遇到问题需要的命令
 
@@ -134,4 +136,14 @@ kubectl apply -f personal-notify-service/deployment.yml
 kubectl apply -f personal-notify-service/service.yml
 
 kubectl rollout restart deployment personal-notify-service-deployment
+```
+
+## room-service
+
+```bash
+kubectl apply -f sheepim-room-service/configmap.yml
+kubectl apply -f sheepim-room-service/deployment.yml
+kubectl apply -f sheepim-room-service/service.yml
+
+kubectl rollout restart deployment sheepim-room-service-deployment
 ```

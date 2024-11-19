@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sheepim-room-service-deployment
+spec:
+  replicas: 3  # 设置副本数量
+  selector:
+    matchLabels:
+      app: sheepim-room-service-pod
+  template:
+    metadata:
+      labels:
+        app: sheepim-room-service-pod
+    spec:
+      containers:
+      - name: sheepim-room-service-container
+        image: peacesheep/sheepim-room-service:latest
+        volumeMounts:
+          - name: config-volume
+            mountPath: /app/conf  
+            readOnly: true
+        ports:
+        - containerPort: 8893
+        livenessProbe:                      # 存活探针，用于检测容器是否正常运行
+          tcpSocket:
+            port: 8893
+          initialDelaySeconds: 20           # 容器启动后等待多少秒开始第一次检测
+          periodSeconds: 10                 # 检测的频率（每隔多少秒检测一次）
+          timeoutSeconds: 5                 # 探针检测的超时时间（单位：秒）
+        readinessProbe:                     # 就绪探针，用于检测服务是否可以接受流量
+          tcpSocket:
+            port: 8893
+          initialDelaySeconds: 20            # 容器启动后等待多少秒开始第一次检测
+          periodSeconds: 5                  # 检测的频率（每隔多少秒检测一次）
+          timeoutSeconds: 5                 # 探针检测的超时时间（单位：秒）
+      volumes:
+      - name: config-volume
+        configMap:
+          name: sheepim-room-service-config

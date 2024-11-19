@@ -76,7 +76,17 @@ kubectl apply -f otel/deployment.yml
 kubectl apply -f otel/service.yml
 
 kubectl rollout restart deployment otel-deployment
+```
 
+## prometheus
+
+```bash
+
+kubectl apply -f prometheus/configmap.yml
+kubectl apply -f prometheus/deployment.yml
+kubectl apply -f prometheus/service.yml
+
+kubectl rollout restart deployment prometheus-deployment
 ```
 
 

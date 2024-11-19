@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otelcol-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: otelcol-pod
+  template:
+    metadata:
+      labels:
+        app: otelcol-pod
+    spec:
+      containers:
+      - name: otelcol-container
+        image: otel/opentelemetry-collector-contrib:latest
+        args: ["--config=/etc/otelcol/otelcol-config.yaml"]
+        ports:
+        - containerPort: 4317 # gRPC OTLP
+        - containerPort: 4318 # HTTP OTLP
+        - containerPort: 9464 # Prometheus Metrics
+        volumeMounts:
+        - name: otelcol-config-volume
+          mountPath: /etc/otelcol
+          readOnly: true
+      volumes:
+      - name: otelcol-config-volume
+        configMap:
+          name: otelcol-config

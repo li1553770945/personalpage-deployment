@@ -16,7 +16,7 @@ data:
         - http://etcd-2.etcd-service.default.svc.cluster.local:2379
 
     open-telemetry:
-      endpoint: jaeger.default.svc.cluster.local:4317
+      endpoint: otelcol-service.default.svc.cluster.local:4317
 
     keys:
       sct-key: xxxx

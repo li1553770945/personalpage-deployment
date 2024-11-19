@@ -23,6 +23,7 @@ spec:
         ports:
           - containerPort: 16686  # Jaeger UI
           - containerPort: 4317
+          - containerPort: 4318
         livenessProbe:                      # 存活探针，检测是否正常运行
           httpGet:
             path: /                        # 检查根路径

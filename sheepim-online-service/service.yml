@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sheepim-online-service-service
+spec:
+  type: ClusterIP
+  selector:
+    app: sheepim-online-service-pod  # 确保与 Pod 的标签匹配
+  ports:
+  - protocol: TCP
+    port: 8895   # Service暴露的端口
+    targetPort: 8895 # 转发到容器的端口
+  

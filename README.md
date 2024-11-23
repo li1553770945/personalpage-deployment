@@ -57,6 +57,19 @@ kubectl delete pod busybox-test
 kubectl apply -f etcd/deployment.yml
 kubectl apply -f etcd/service.yml
 ```
+
+## kafka
+
+```bash
+kubectl apply -f kafka/zookeeper-deployment.yml
+kubectl apply -f kafka/zookeeper-service.yml
+
+kubectl apply -f kafka/kafka-deployment.yml
+kubectl apply -f kafka/kafka-service.yml
+
+kubectl rollout restart statefulset kafka-deployment
+```
+
 ## jaeger
 
 ```bash
@@ -169,4 +182,46 @@ kubectl apply -f sheepim-room-service/deployment.yml
 kubectl apply -f sheepim-room-service/service.yml
 
 kubectl rollout restart deployment sheepim-room-service-deployment
+```
+
+
+## online-service
+
+```bash
+kubectl apply -f sheepim-online-service/configmap.yml
+kubectl apply -f sheepim-online-service/deployment.yml
+kubectl apply -f sheepim-online-service/service.yml
+
+kubectl rollout restart deployment sheepim-online-service-deployment
+```
+
+
+## connect-service
+
+```bash
+kubectl apply -f sheepim-connect-service/configmap.yml
+kubectl apply -f sheepim-connect-service/deployment.yml
+kubectl apply -f sheepim-connect-service/service.yml
+
+kubectl rollout restart deployment sheepim-online-service-deployment
+```
+
+## push-proxy-service
+
+```bash
+kubectl apply -f sheepim-push-proxy-service/configmap.yml
+kubectl apply -f sheepim-push-proxy-service/deployment.yml
+kubectl apply -f sheepim-push-proxy-service/service.yml
+
+kubectl rollout restart deployment sheepim-push-proxy-service-deployment
+```
+
+## push-worker-service
+
+```bash
+kubectl apply -f sheepim-push-worker-service/configmap.yml
+kubectl apply -f sheepim-push-worker-service/deployment.yml
+kubectl apply -f sheepim-push-worker-service/service.yml
+
+kubectl rollout restart deployment sheepim-push-worker-service-deployment
 ```

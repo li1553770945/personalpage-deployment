@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sheepim-push-worker-service-deployment
+spec:
+  replicas: 3  # 设置副本数量
+  selector:
+    matchLabels:
+      app: sheepim-push-worker-service-pod
+  template:
+    metadata:
+      labels:
+        app: sheepim-push-worker-service-pod
+    spec:
+      containers:
+      - name: sheepim-push-worker-service-container
+        image: peacesheep/sheepim-push-worker-service:latest
+        volumeMounts:
+          - name: config-volume
+            mountPath: /app/conf  
+            readOnly: true        
+      volumes:
+      - name: config-volume
+        configMap:
+          name: sheepim-push-worker-service-config

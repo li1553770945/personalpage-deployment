@@ -56,6 +56,8 @@ kubectl delete pod busybox-test
 ```bash
 kubectl apply -f etcd/deployment.yml
 kubectl apply -f etcd/service.yml
+
+kubectl rollout restart statefulset etcd
 ```
 
 ## kafka

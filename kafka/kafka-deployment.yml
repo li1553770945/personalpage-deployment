@@ -41,3 +41,6 @@ spec:
           value: PLAINTEXT://:9092
         - name: KAFKA_CFG_OFFSETS_TOPIC_NUM_PARTITIONS
           value: "1"
+        - name: KAFKA_CFG_AUTO_COMMIT_INTERVAL_MS
+          value: "500" # 每秒自动提交偏移量
+

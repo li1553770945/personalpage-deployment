@@ -23,4 +23,5 @@ data:
       auth-service-name: sheepim-auth-service
       online-service-name: sheepim-online-service
       push-proxy-service-name: sheepim-push-proxy-service
+      room-service-name: sheepim-room-service
       

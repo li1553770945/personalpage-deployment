@@ -78,6 +78,10 @@ kubectl rollout restart statefulset kafka-deployment
 kubectl apply -f jaeger/deployment.yml
 kubectl apply -f jaeger/service.yml
 
+crontab -e
+53 17 * * * ubuntu KUBECONFIG=/home/ubuntu/.kube/config /usr/local/bin/kubectl rollout restart deployment/jaeger -n default >> /var/log/jaeger-restart.log 2>&1
+
+
 kubectl rollout restart deployment jaeger
 
 ```
@@ -226,4 +230,14 @@ kubectl apply -f sheepim-push-worker-service/deployment.yml
 kubectl apply -f sheepim-push-worker-service/service.yml
 
 kubectl rollout restart deployment sheepim-push-worker-service-deployment
+```
+
+
+# 其他服务
+
+## nextcloud
+
+```bash
+
+
 ```

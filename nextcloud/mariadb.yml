@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mariadb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mariadb
+  template:
+    metadata:
+      labels:
+        app: mariadb
+    spec:
+      containers:
+      - name: mariadb
+        image: mariadb:latest
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "Mariadb159!."  # 设置 MariaDB 的 root 密码
+        - name: MYSQL_DATABASE
+          value: "nextcloud"  # 创建 nextcloud 数据库
+        - name: MYSQL_USER
+          value: "nextcloud_user"  # 设置 nextcloud 的数据库用户
+        - name: MYSQL_PASSWORD
+          value: "Mariadb159!."  # 设置 nextcloud 用户的密码
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - name: mariadb-data
+          mountPath: /var/lib/mysql  # 挂载到容器的 MariaDB 数据目录
+      volumes:
+      - name: mariadb-data
+        persistentVolumeClaim:
+          claimName: mariadb-data-pvc  # 挂载我们创建的 PVC
+---
+# mariadb-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb
+spec:
+  selector:
+    app: mariadb
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
+  type: ClusterIP

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextcloud
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextcloud
+  template:
+    metadata:
+      labels:
+        app: nextcloud
+    spec:
+      containers:
+      - name: nextcloud
+        image: nextcloud:latest
+        env:
+        - name: MYSQL_HOST
+          value: "mariadb"
+        - name: MYSQL_PASSWORD
+          value: "Mariadb159!."
+        - name: MYSQL_DATABASE
+          value: "nextcloud"
+        - name: MYSQL_USER
+          value: "nextcloud_user"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: nextcloud-data
+          mountPath: /var/www/html
+      volumes:
+      - name: nextcloud-data
+        persistentVolumeClaim:
+          claimName: nextcloud-data-pvc  # 手动挂载 PVC
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nextcloud-service
+spec:
+  selector:
+    app: nextcloud
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+      nodePort: 30000
+  type: NodePort

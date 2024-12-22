@@ -1,0 +1,27 @@
+# mariadb-pv-pvc.yaml
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mariadb-data-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /opt/nextcloud/mysqldata
+    type: DirectoryOrCreate
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mariadb-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi

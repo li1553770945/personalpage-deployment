@@ -160,6 +160,16 @@ kubectl apply -f personal-project-service/service.yml
 kubectl rollout restart deployment personal-project-service-deployment
 ```
 
+## file-service
+
+```bash
+kubectl apply -f personal-file-service/config-secret.yml
+kubectl apply -f personal-file-service/deployment.yml
+kubectl apply -f personal-file-service/service.yml
+
+kubectl rollout restart deployment personal-file-service-deployment
+```
+
 ## feedback-service
 
 ```bash

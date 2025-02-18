@@ -23,3 +23,4 @@ data:
       feedback-service-name: personal-feedback-service
       notify-service-name: personal-notify-service
       room-service-name: sheepim-room-service
+      file-service-name: personal-file-service

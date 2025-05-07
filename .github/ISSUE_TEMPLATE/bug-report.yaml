@@ -32,7 +32,7 @@ body:
     validations:
       required: true
   - type: textarea
-    id: additional_notes
+    id: notes
     attributes:
       label: 其他备注信息
       description: "补充说明"

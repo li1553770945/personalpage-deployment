@@ -36,5 +36,4 @@ body:
     attributes:
       label: 其他备注信息
       description: "补充说明"
-    validations:
-      required: true
+      placeholder: "例如: 相关截图/日志/错误信息"

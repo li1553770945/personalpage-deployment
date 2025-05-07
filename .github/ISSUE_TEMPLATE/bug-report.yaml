@@ -34,6 +34,8 @@ body:
   - type: textarea
     id: expectedee
     attributes:
-      label: 预期行为
+      label: 其他备注信息
+      description: "补充说明"
+      placeholder: ""
     validations:
       required: true

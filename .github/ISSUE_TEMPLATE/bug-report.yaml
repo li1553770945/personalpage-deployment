@@ -20,6 +20,8 @@ body:
     attributes:
       label: 复现步骤
       description: 如何触发的错误？（按数字列表格式）"
-      placeholder: "123"
+      placeholder: |
+        1. 
+        2. 
     validations:
       required: true

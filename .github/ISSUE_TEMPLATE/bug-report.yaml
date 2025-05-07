@@ -29,9 +29,4 @@ body:
     id: expected
     attributes:
       label: 预期行为
-  - type: textarea
-    id: notes
-    attributes:
-      label: 其他备注信息
-      description: "补充说明"
-      placeholder: ""
+

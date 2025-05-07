@@ -36,6 +36,5 @@ body:
     attributes:
       label: 其他备注信息
       description: "补充说明"
-      placeholder: ""
     validations:
       required: true

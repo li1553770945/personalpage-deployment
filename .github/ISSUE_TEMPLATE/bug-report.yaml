@@ -15,3 +15,27 @@ body:
       placeholder: "例如: Windows 11 / Chrome 120 / v2.1.0 / dev模式"
     validations:
       required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: 复现步骤
+      description: 如何触发的错误？（按数字列表格式）"
+      placeholder: |
+        1. 
+        2. 
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 预期行为
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: 其他备注信息
+      description: "补充说明"
+      placeholder: ""
+      value: ""  # 默认留空
+    validations:
+      required: false  # 可选字段

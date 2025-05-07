@@ -32,8 +32,8 @@ body:
     validations:
       required: true
   - type: textarea
-    id: notes
+    id: expectedee
     attributes:
-      label: 其他备注信息
-      description: "补充说明"
-      placeholder: ""
+      label: 预期行为
+    validations:
+      required: true

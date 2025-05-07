@@ -6,5 +6,7 @@ spec:
   ports:
   - port: 9092
     name: broker
+  - port: 9093
+    name: controller
   selector:
     app: kafka-pod

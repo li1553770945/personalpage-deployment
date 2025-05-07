@@ -18,11 +18,28 @@ spec:
         image: bitnami/kafka:4.0.0
         ports:
         - containerPort: 9092
+        - containerPort: 9093
         env:
-        - name: KAFKA_CFG_ZOOKEEPER_CONNECT
-          value: zookeeper-service.default.svc.cluster.local:2181
+        # KRaft 模式配置 - 不需要 ZooKeeper
+        - name: KAFKA_CFG_PROCESS_ROLES
+          value: "broker,controller"
+        - name: KAFKA_CFG_NODE_ID
+          value: "0"
+        - name: KAFKA_CFG_CONTROLLER_QUORUM_VOTERS
+          value: "0@kafka-service.default.svc.cluster.local:9093"
+        - name: KAFKA_CFG_LISTENERS
+          value: "PLAINTEXT://:9092,CONTROLLER://:9093"
+        - name: KAFKA_CFG_ADVERTISED_LISTENERS
+          value: "PLAINTEXT://kafka-service.default.svc.cluster.local:9092"
+        - name: KAFKA_CFG_CONTROLLER_LISTENER_NAMES
+          value: "CONTROLLER"
+        - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
+          value: "PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT"
+        - name: KAFKA_CLUSTER_ID
+          value: "kafka-cluster-001"
         - name: ALLOW_PLAINTEXT_LISTENER
           value: "yes"
+        # 单节点配置
         - name: KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR
           value: "1"
         - name: KAFKA_CFG_TRANSACTION_STATE_LOG_REPLICATION_FACTOR
@@ -33,19 +50,21 @@ spec:
           value: "1"
         - name: KAFKA_CFG_MIN_INSYNC_REPLICAS
           value: "1"
-        - name: KAFKA_CFG_BROKER_ID
-          value: "0"
-        - name: KAFKA_CFG_ADVERTISED_LISTENERS
-          value: PLAINTEXT://kafka-service.default.svc.cluster.local:9092
-        - name: KAFKA_CFG_LISTENERS
-          value: PLAINTEXT://:9092
         - name: KAFKA_CFG_OFFSETS_TOPIC_NUM_PARTITIONS
           value: "1"
         - name: KAFKA_CFG_AUTO_COMMIT_INTERVAL_MS
           value: "500" # 每秒自动提交偏移量
-        - name: KAFKA_CFG_PROCESS_ROLES
-          value: "broker"
-        - name: KAFKA_CFG_NODE_ID
+        # API 版本兼容性配置
+        - name: KAFKA_CFG_INTER_BROKER_PROTOCOL_VERSION
+          value: "3.0"
+        - name: KAFKA_CFG_API_VERSION_FALLBACK_ENABLE
+          value: "true"
+        # API 版本兼容性配置 - 支持旧版本客户端
+        - name: KAFKA_CFG_GROUP_INITIAL_REBALANCE_DELAY_MS
           value: "0"
-        - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
-          value: "PLAINTEXT:PLAINTEXT"
+        - name: KAFKA_CFG_LOG_FLUSH_INTERVAL_MESSAGES
+          value: "10000"
+        - name: KAFKA_CFG_LOG_FLUSH_INTERVAL_MS
+          value: "1000"
+        - name: KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE
+          value: "true"

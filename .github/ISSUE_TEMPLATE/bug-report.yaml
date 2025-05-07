@@ -29,13 +29,3 @@ body:
     id: expected
     attributes:
       label: 预期行为
-
-  - type: textarea
-    id: additional_notes
-    attributes:
-      label: 其他备注信息
-      description: "补充说明"
-      placeholder: ""
-      value: ""  # 默认留空
-    validations:
-      required: false  # 可选字段

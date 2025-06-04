@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: uptime-kuma
+  labels:
+    app: uptime-kuma
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: uptime-kuma
+  template:
+    metadata:
+      labels:
+        app: uptime-kuma
+    spec:
+      containers:
+      - name: uptime-kuma
+        image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/louislam/uptime-kuma
+        ports:
+        - containerPort: 3001
+        volumeMounts:
+        - mountPath: /app/data
+          name: uptime-kuma-data
+      volumes:
+      - name: uptime-kuma-data
+        persistentVolumeClaim:
+          claimName: uptime-kuma-pvc
+

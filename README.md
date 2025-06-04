@@ -249,5 +249,22 @@ kubectl rollout restart deployment sheepim-push-worker-service-deployment
 
 ```bash
 
+kubectl apply -f nextcloud/mariadb-pvc.yml
+kubectl apply -f nextcloud/mariadb.yml
 
+kubectl apply -f nextcloud/nextcloud-pvc.yml
+kubectl apply -f nextcloud.yml
+
+kubectl rollout restart deployment nextcloud
 ```
+
+## kuma
+
+```bash
+kubectl apply -f kuma/kuma.yaml
+kubectl apply -f kuma/service.yaml
+kubectl apply -f kuma/pv.yaml
+kubectl apply -f kuma/pvc.yaml
+```
+
+## nginx

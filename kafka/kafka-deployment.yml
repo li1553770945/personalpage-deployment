@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: kafka-container
-        image: bitnami/kafka:latest
+        image: bitnami/kafka:4.0.0
         ports:
         - containerPort: 9092
         env:
@@ -43,4 +43,9 @@ spec:
           value: "1"
         - name: KAFKA_CFG_AUTO_COMMIT_INTERVAL_MS
           value: "500" # 每秒自动提交偏移量
-
+        - name: KAFKA_CFG_PROCESS_ROLES
+          value: "broker"
+        - name: KAFKA_CFG_NODE_ID
+          value: "0"
+        - name: KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP
+          value: "PLAINTEXT:PLAINTEXT"

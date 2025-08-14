@@ -268,3 +268,8 @@ kubectl apply -f kuma/pvc.yaml
 ```
 
 ## nginx
+
+```bash
+sudo cp nginx/nginx.conf /etc/nginx/nginx.conf
+sudo nginx -s reload
+```

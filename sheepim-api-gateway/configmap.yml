@@ -24,3 +24,4 @@ data:
       notify-service-name: personal-notify-service
       room-service-name: sheepim-room-service
       file-service-name: personal-file-service
+      aichat-service-name: personal-aichat-service

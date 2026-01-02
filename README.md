@@ -239,7 +239,15 @@ kubectl apply -f sheepim-push-worker-service/service.yml
 kubectl rollout restart deployment sheepim-push-worker-service-deployment
 ```
 
+## personal-aichat-service
 
+```bash
+kubectl apply -f personal-aichat-service/config-secret.yml
+kubectl apply -f personal-aichat-service/deployment.yml
+kubectl apply -f personal-aichat-service/service.yml
+
+kubectl rollout restart deployment personal-aichat-service-deployment
+```
 # 其他服务
 
 ## nextcloud

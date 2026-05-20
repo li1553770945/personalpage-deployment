@@ -1,0 +1,47 @@
+nameOverride: infisical
+fullnameOverride: infisical
+
+infisical:
+  enabled: true
+  name: infisical
+  replicaCount: 1
+
+  image:
+    repository: infisical/infisical
+    tag: v0.151.0
+    pullPolicy: IfNotPresent
+
+  service:
+    type: ClusterIP
+
+  kubeSecretRef: infisical-secrets
+
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 1000m
+      memory: 1Gi
+
+ingress:
+  enabled: false
+  nginx:
+    enabled: false
+
+postgresql:
+  enabled: true
+  name: postgresql
+  fullnameOverride: postgresql
+  auth:
+    username: infisical
+    password: CHANGE_ME_POSTGRES_PASSWORD
+    database: infisicalDB
+  primary:
+    persistence:
+      enabled: true
+      storageClass: manual
+      size: 8Gi
+
+redis:
+  enabled: false

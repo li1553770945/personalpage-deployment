@@ -114,6 +114,16 @@ kubectl apply -f redis/deployment.yml
 kubectl apply -f redis/service.yml
 ```
 
+## infisical
+
+```bash
+kubectl apply -f infisical/namespace.yml
+kubectl apply -f infisical/postgresql-pv.yml
+
+# 详细部署步骤见 infisical/README.md
+helm upgrade --install infisical infisical-helm-charts/infisical-standalone -n infisical -f /tmp/infisical-values.yml
+```
+
 ## api-gateway
 
 
@@ -263,5 +273,7 @@ kubectl apply -f kuma/pvc.yaml
 
 ```bash
 sudo cp nginx/nginx.conf /etc/nginx/nginx.conf
+sudo cp nginx/conf.d/*.conf /etc/nginx/conf.d/
+sudo nginx -t
 sudo nginx -s reload
 ```

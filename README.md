@@ -250,19 +250,6 @@ kubectl rollout restart deployment personal-aichat-service-deployment
 ```
 # 其他服务
 
-## nextcloud
-
-```bash
-
-kubectl apply -f nextcloud/mariadb-pvc.yml
-kubectl apply -f nextcloud/mariadb.yml
-
-kubectl apply -f nextcloud/nextcloud-pvc.yml
-kubectl apply -f nextcloud.yml
-
-kubectl rollout restart deployment nextcloud
-```
-
 ## kuma
 
 ```bash

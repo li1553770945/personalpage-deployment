@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
       - name: uptime-kuma
-        image: swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/louislam/uptime-kuma
+        image: louislam/uptime-kuma:2
+        imagePullPolicy: Always
         ports:
         - containerPort: 3001
         volumeMounts:

@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: open-webui
+  namespace: default
+  labels:
+    app: open-webui
+spec:
+  replicas: 1 # 个人/考场使用，1个副本足够。内置SQLite不支持多写，请勿盲目扩容副本
+  selector:
+    matchLabels:
+      app: open-webui
+  template:
+    metadata:
+      labels:
+        app: open-webui
+    spec:
+      containers:
+        - name: open-webui
+          image: ghcr.io/open-webui/open-webui:main
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+              name: http
+          envFrom:
+            - configMapRef:
+                name: open-webui-config
+          env:
+            # 你的云端 API Key，建议通过环境变量注入（生产环境更推荐使用 Secret，这里为了方便演示先放env）
+            - name: OPENAI_API_KEY
+              value: "sk-xxxxxx你的DeepSeek或者中转Keyxxxxxx"
+            # 用于加密浏览器 Session 的密钥，随便填一串长随机字符串即可
+            - name: WEBUI_SECRET_KEY
+              value: "secure_random_string_for_exam_room_2026"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+          volumeMounts:
+            - name: webui-data
+              mountPath: /app/backend/data
+      volumes:
+        - name: webui-data
+          # 考场多台机器需要保存对话历史和管理员账号。
+          # 如果你的 K8s 集群配置了 StorageClass，强烈建议改为 persistentVolumeClaim
+          # 这里先用 hostPath 兜底，将数据持久化在当前 K8s 节点的 /var/lib/open-webui 目录下
+          hostPath:
+            path: /home/ubuntu/programming/personalpage-deployment/data/open-webui
+            type: DirectoryOrCreate

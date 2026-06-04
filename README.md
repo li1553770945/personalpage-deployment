@@ -269,6 +269,19 @@ kubectl apply -f kuma/pv.yaml
 kubectl apply -f kuma/pvc.yaml
 ```
 
+## cloudreve
+
+```bash
+# 详见 other-tools/cloudreve/k8s/README.md
+kubectl apply -f other-tools/cloudreve/k8s/pv.yaml
+kubectl apply -f other-tools/cloudreve/k8s/pvc.yaml
+# 首次需创建 secret（见 secret-example.yaml）
+kubectl apply -f other-tools/cloudreve/k8s/postgresql.yaml
+kubectl apply -f other-tools/cloudreve/k8s/redis.yaml
+kubectl apply -f other-tools/cloudreve/k8s/cloudreve.yaml
+kubectl apply -f other-tools/cloudreve/k8s/service.yaml
+```
+
 ## nginx
 
 ```bash

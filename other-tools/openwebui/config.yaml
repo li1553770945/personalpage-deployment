@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: open-webui-config
+  namespace: default
+  labels:
+    app: open-webui
+data:
+  # 初始默认的 API，这里以 DeepSeek 为例。部署后你也可以直接在网页管理面板里图形化添加更多 API
+  OPENAI_API_BASE_URL: "https://api.deepseek.com/v1"
+  # 是否允许陌生人注册。建议设为 false，防止考场公网 IP 暴露后被别人注册刷额度
+  ENABLE_SIGNUP: "false"
+  # 关闭本地 Ollama 的自动检测（因为我们只用云端 API，关闭可以加快启动速度并减少报错）
+  ENABLE_OLLAMA_API: "false"

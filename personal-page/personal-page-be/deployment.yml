@@ -15,6 +15,7 @@ spec:
       containers:
       - name: personal-page-be-container
         image: peacesheep/personal-page-be:latest
+        imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: config-volume
           mountPath: /app/conf

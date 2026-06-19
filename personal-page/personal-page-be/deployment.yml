@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: personal-page-be-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: personal-page-be-pod
+  template:
+    metadata:
+      labels:
+        app: personal-page-be-pod
+    spec:
+      containers:
+      - name: personal-page-be-container
+        image: peacesheep/personal-page-be:latest
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/conf
+          readOnly: true
+        ports:
+        - containerPort: 9101
+        livenessProbe:
+          httpGet:
+            path: /api/ping
+            port: 9101
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /api/ping
+            port: 9101
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 3
+      volumes:
+      - name: config-volume
+        configMap:
+          name: personal-page-be-config

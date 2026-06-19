@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: personal-page-be-config
+data:
+  config.yaml: |
+    database:
+      driver: mysql
+      username: xxx
+      password: xxx
+      database: xxx
+      address: xxx
+      port: 3306
+      use-tls: false
+
+    http:
+      address: 0.0.0.0:9101
+      secret_key: xxx
+      jwt_key: xxx
+
+    cos:
+      ak: xxx
+      sk: xxx
+      endpoint: https://xxx.cos.accelerate.myqcloud.com
+
+    aichat:
+      model: "gpt-4.1"
+      api-key: xxx
+      url: https://api.dify.ai/v1/chat-messages
+
+    notify:
+      server-chan-key: xxx

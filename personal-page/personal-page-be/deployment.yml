@@ -16,6 +16,11 @@ spec:
       - name: personal-page-be-container
         image: peacesheep/personal-page-be:latest
         imagePullPolicy: IfNotPresent
+        env:
+        - name: OTEL_SERVICE_NAME
+          value: personal-page-be
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: otelcol-service.default.svc.cluster.local:4317
         volumeMounts:
         - name: config-volume
           mountPath: /app/conf

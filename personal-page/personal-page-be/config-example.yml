@@ -30,3 +30,6 @@ data:
 
     notify:
       server-chan-key: xxx
+
+    site:
+      super_admin_username: xxx

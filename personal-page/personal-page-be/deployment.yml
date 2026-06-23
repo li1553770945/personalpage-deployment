@@ -12,6 +12,8 @@ spec:
       labels:
         app: personal-page-be-pod
     spec:
+      imagePullSecrets:
+      - name: dockerhub-regcred
       containers:
       - name: personal-page-be-container
         image: peacesheep/personal-page-be:latest

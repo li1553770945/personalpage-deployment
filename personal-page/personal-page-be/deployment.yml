@@ -15,7 +15,7 @@ spec:
       containers:
       - name: personal-page-be-container
         image: peacesheep/personal-page-be:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         env:
         - name: OTEL_SERVICE_NAME
           value: personal-page-be

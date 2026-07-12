@@ -14,9 +14,10 @@ spec:
     spec:
       imagePullSecrets:
       - name: dockerhub-regcred
+      - name: ccr-tencent
       containers:
       - name: personal-page-be-container
-        image: peacesheep/personal-page-be:08f3179df68c7a62c720b109d2b3d9a960497a7d
+        image: ccr.ccs.tencentyun.com/littlehorse/personal-page-be:ed916f2641f680a8f3e6539600ae474583ffb12d@sha256:d45676e98a383956d485edcfcfa290493dad9fdd7bbbcdceccf50e1e9a16790b
         imagePullPolicy: IfNotPresent
         env:
         - name: OTEL_SERVICE_NAME

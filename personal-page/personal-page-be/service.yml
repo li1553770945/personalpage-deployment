@@ -4,6 +4,9 @@ metadata:
   name: personal-page-be-service
 spec:
   type: NodePort
+  # The cluster is single-node. Preserve public source IPs so direct NodePort
+  # traffic cannot masquerade as the trusted local nginx peer.
+  externalTrafficPolicy: Local
   selector:
     app: personal-page-be-pod
   ports:

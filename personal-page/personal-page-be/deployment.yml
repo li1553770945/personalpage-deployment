@@ -16,13 +16,20 @@ spec:
       - name: dockerhub-regcred
       containers:
       - name: personal-page-be-container
-        image: peacesheep/personal-page-be:latest
+        image: peacesheep/personal-page-be:08f3179df68c7a62c720b109d2b3d9a960497a7d
         imagePullPolicy: IfNotPresent
         env:
         - name: OTEL_SERVICE_NAME
           value: personal-page-be
         - name: OTEL_EXPORTER_OTLP_ENDPOINT
           value: otelcol-service.default.svc.cluster.local:4317
+        - name: AICHAT_TRUST_PROXY_HEADERS
+          value: "true"
+        - name: PERSONAL_PAGE_JWT_KEY
+          valueFrom:
+            secretKeyRef:
+              name: jwt-key-secret
+              key: JWT_KEY
         volumeMounts:
         - name: config-volume
           mountPath: /app/conf

@@ -3,7 +3,9 @@ kind: Deployment
 metadata:
   name: personal-page-be-deployment
 spec:
-  replicas: 2
+  # Chat rooms are kept in-process, so this single-node installation must run
+  # exactly one replica. This also keeps the personal server memory footprint low.
+  replicas: 1
   selector:
     matchLabels:
       app: personal-page-be-pod
@@ -17,8 +19,15 @@ spec:
       - name: ccr-tencent
       containers:
       - name: personal-page-be-container
-        image: ccr.ccs.tencentyun.com/littlehorse/personal-page-be:ed916f2641f680a8f3e6539600ae474583ffb12d@sha256:d45676e98a383956d485edcfcfa290493dad9fdd7bbbcdceccf50e1e9a16790b
+        image: ccr.ccs.tencentyun.com/littlehorse/personal-page-be:e9465712163b1f747236db165f0a208d9af26457@sha256:2aa8a64ab23e225ee7aea4da13cf64338a2b8df2eff741adb453d064e154142d
         imagePullPolicy: IfNotPresent
+        resources:
+          requests:
+            cpu: 20m
+            memory: 64Mi
+          limits:
+            cpu: 500m
+            memory: 256Mi
         env:
         - name: OTEL_SERVICE_NAME
           value: personal-page-be

@@ -1,8 +1,8 @@
 # personal-page-be
 
-个人网站单体后端，承接原 personal-project-service、personal-file-service、personal-feedback-service、personal-notify-service、personal-aichat-service 的 HTTP API。
+个人网站单体后端，承接用户、项目、文件、反馈、通知、AI 对话、幻灯片、博客和临时聊天室 API。
 
-聊天系统仍保留 sheepim 微服务，`/api/rooms` 继续走 sheepim-api-gateway，`/connect` 继续走 sheepim-connect-service。
+`/api/rooms` 与 `/connect` 均由本服务处理；旧 SheepIM 微服务及其 etcd、Kafka、Redis 依赖已停用。聊天室状态保存在进程内，因此当前单节点部署保持 1 个副本。
 
 ```bash
 kubectl apply -f personal-page/personal-page-be/config-secret.yml

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: sheepim-user-service-deployment
 spec:
-  replicas: 3  # 设置副本数量
+  replicas: 0  # Retired: users are provided by personal-page-be.
   selector:
     matchLabels:
       app: sheepim-user-service-pod

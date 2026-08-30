@@ -12,9 +12,9 @@
 
 | 项目 | 说明 | 文档 |
 |------|------|------|
-| etcd | 服务发现与配置存储（3 副本 StatefulSet） | [infra/etcd](infra/etcd/README.md) |
-| Kafka | SheepIM 消息推送队列（KRaft 单节点） | [infra/kafka](infra/kafka/README.md) |
-| Redis | 缓存与会话（room / online 等复用） | [infra/redis](infra/redis/README.md) |
+| etcd | 已随 SheepIM 停用，清单保留作回滚 | [infra/etcd](infra/etcd/README.md) |
+| Kafka | 已随 SheepIM 停用，清单保留作回滚 | [infra/kafka](infra/kafka/README.md) |
+| Redis | 已随 SheepIM 停用，清单保留作回滚 | [infra/redis](infra/redis/README.md) |
 | Jaeger | 分布式链路追踪（all-in-one） | [infra/observer/jaeger](infra/observer/jaeger/README.md) |
 | OpenTelemetry Collector | 采集 trace/metrics 并转发 | [infra/observer/otel](infra/observer/otel/README.md) |
 | Prometheus | 指标采集与查询 | [infra/observer/prometheus](infra/observer/prometheus/README.md) |
@@ -25,11 +25,13 @@
 
 | 项目 | 说明 | 文档 |
 |------|------|------|
-| personal-page-be | 个人网站单体后端，包含项目、文件、反馈、通知、AI 对话、个人站登录注册 | [personal-page/personal-page-be](personal-page/personal-page-be/README.md) |
+| personal-page-be | 个人网站单体后端，包含用户、项目、文件、反馈、通知、AI 对话、幻灯片、博客与临时聊天室 | [personal-page/personal-page-be](personal-page/personal-page-be/README.md) |
 
 旧的 `personal-project-service`、`personal-file-service`、`personal-feedback-service`、`personal-notify-service`、`personal-aichat-service` K8s 清单已移除；新流量应走 `personal-page-be`。
 
-## SheepIM
+## SheepIM（已停用）
+
+以下清单统一保留为 0 副本，便于短期回滚；生产流量不再经过这些服务。
 
 | 项目 | 说明 | 文档 |
 |------|------|------|

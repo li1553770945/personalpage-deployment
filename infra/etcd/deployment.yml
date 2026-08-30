@@ -4,7 +4,7 @@ metadata:
   name: etcd
 spec:
   serviceName: etcd-service  # 配置无头服务，见后面的Service配置
-  replicas: 3                # etcd 集群的副本数量
+  replicas: 0                # Retired with SheepIM; manifest is retained for rollback.
   selector:
     matchLabels:
       app: etcd

@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: redis
 spec:
-  replicas: 1
+  replicas: 0  # Retired shared SheepIM cache; manifests remain for rollback.
   selector:
     matchLabels:
       app: redis

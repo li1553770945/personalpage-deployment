@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: sheepim-connect-service-deployment
 spec:
-  replicas: 3  # 设置副本数量
+  replicas: 0  # Retired: personal-page-be now serves /connect.
   selector:
     matchLabels:
       app: sheepim-connect-service-pod

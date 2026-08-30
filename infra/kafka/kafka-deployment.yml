@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: kafka-deployment
 spec:
-  replicas: 1
+  replicas: 0  # Retired with SheepIM; manifest is retained for rollback.
   selector:
     matchLabels:
       app: kafka-pod

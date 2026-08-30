@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: sheepim-push-proxy-service-deployment
 spec:
-  replicas: 3  # 设置副本数量
+  replicas: 0  # Retired with the SheepIM stack.
   selector:
     matchLabels:
       app: sheepim-push-proxy-service-pod

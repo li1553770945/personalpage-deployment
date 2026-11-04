@@ -19,7 +19,7 @@ spec:
       - name: ccr-tencent
       containers:
       - name: personal-page-be-container
-        image: ccr.ccs.tencentyun.com/littlehorse/personal-page-be:e9465712163b1f747236db165f0a208d9af26457@sha256:2aa8a64ab23e225ee7aea4da13cf64338a2b8df2eff741adb453d064e154142d
+        image: ccr.ccs.tencentyun.com/littlehorse/personal-page-be:7b9822a3d04d987cd34ea9e5b2db6253dfd81f4b@sha256:06fdab528f3f5414f56e9e5b8a1dcdebd553d35e0e796fd9deedc90eb4a40384
         imagePullPolicy: IfNotPresent
         resources:
           requests:
